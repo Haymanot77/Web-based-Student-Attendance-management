@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>IST4035 Students</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body onload="fetchStudents()">
+        <a href="/" onclick="">Overall</a>
+        <a href="/attendance" onclick="">Take Attendance</a>
+        <a href="/edit" onclick="">Edit Attendance</a>
+        <button onclick="openAdd()">Register Student</button>
+        <a href="/delete" onclick="">Delete Student</a>
+{{!-- <button onclick="" >Overall</button>
+<button onclick="">Take Attendance</button>
+<button onclick="">Edit Attendance</button>
+<button onclick="openAdd()">Add Attendance</button>
+<button onclick="">Delete Attendance</button> --}}
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeAdd()">&times;</span>
+            <h1>Student Register</h1>
+            <div>
+                <form>
+                    <label>
+                        <span>Student id:</span>
+                        <input id="studentId" type="text" />
+                    </label>
+                    <label>
+                        <span>Student name:</span>
+                        <input id="studentName" type="text" />
+                    </label>
+                    <label>
+                        <span> </span>
+                        <button >Add student</button>
+                    </label>
+                </form>
+                
+               
+            </div>
+        </div>
+    </div>
+ <table id="content">
+</table>
+ </body>
+    <script src="js/main.js"></script>
+    
+</html>
