@@ -146,51 +146,42 @@ document.getElementById('studentDataBody').addEventListener('click', function(ev
 // Function to submit attendance data to the server
 async function submitAttendance(event) {
     event.preventDefault();
-    // Collect attendance data
-    const presentIds = [];
-    const absentIds = [];
-    const excusedIds = [];
+    
+    // Create an object to hold the attendance data
+    const attendanceData = {};
 
+    // Collect attendance data for each student
     document.querySelectorAll('.status').forEach(cell => {
         // Get the parent row of the cell
         const row = cell.parentNode;
-    
+
         // Extract student ID from the row
         const studentId = row.children[0].textContent; // Assuming student ID is in the first column
-    
-        // Check if the cell is selected (not equal to '-')
-        if (cell.textContent !== '-') {
-            // Extract status from the cell class
-            const status = cell.classList.contains('present') ? 'present' :
-                           cell.classList.contains('absent') ? 'absent' :
-                           cell.classList.contains('excused') ? 'excused' : 'unknown';
-    
-            // Push student ID based on the selected status
-            switch (status) {
-                case 'present':
-                    presentIds.push(studentId);
-                    break;
-                case 'absent':
-                    absentIds.push(studentId);
-                    break;
-                case 'excused':
-                    excusedIds.push(studentId);
-                    break;
-                default:
-                    break;
-            }
+
+        // Extract status and mark from the cell
+        let status, mark;
+        if (cell.classList.contains('present')) {
+            status = 'present';
+            mark = '100%';
+        } else if (cell.classList.contains('absent')) {
+            status = 'absent';
+            mark = '0%';
+        } else if (cell.classList.contains('excused')) {
+            status = 'excused';
+            mark = '';
         }
+
+        // Create an object for the student if not already present
+        if (!attendanceData[date]) {
+            attendanceData[date] = {};
+        }
+
+        // Assign status and mark for the student
+        attendanceData[date][studentId] = {
+            status: status,
+            mark: mark
+        };
     });
-    
-    // Create attendance data object
-    const date = formatDate(new Date());
-    const attendanceData = {
-        [date]: {
-            present: presentIds,
-            absent: absentIds,
-            excused: excusedIds
-        }
-    };
 
     // Send attendance data to the server
     const url = server + '/attendance';
@@ -213,13 +204,10 @@ async function submitAttendance(event) {
         console.error('Error submitting attendance data:', error);
         alert('Failed to submit attendance data. Please try again.');
     }
-
-
-    
 }
 
 // Add event listener to the submit button
 document.querySelectorAll('#submit').forEach(button => {
-    button.addEventListener('click', submitAttendance);
+button.addEventListener('click', submitAttendance);
    
 });
