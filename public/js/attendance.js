@@ -100,14 +100,17 @@ function markAttendance(cell) {
         case 'present':
             symbol = '✔️';
             mark = '100%';
+            bgcolor="green";
             break;
         case 'absent':
             symbol = '❌';
-            mark = '0';
+            mark = '0%';
+            bgcolor="red";
             break;
         case 'excused':
             symbol = '⚠️';
             mark = '';
+            bgcolor="yellow";
             break;
         default:
             symbol = '-';
@@ -117,6 +120,7 @@ function markAttendance(cell) {
     // Update cell content and class
     cell.textContent = symbol;
     cell.className = `status ${newStatus}`;
+   
 
     // Update mark cell content
     const row = cell.parentNode;

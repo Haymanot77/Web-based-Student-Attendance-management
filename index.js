@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 
 app.get('/', (request, response) => {
-    response.render('home');
+    response.render('attendance');
 });
 
 // This is a RESTful GET web service
@@ -69,23 +69,20 @@ app.post('/attendance', jsonParser, (req, res) => {
 
   // Write the updated attendance data to the file
   fs.writeFileSync(attendanceFileName, JSON.stringify(attendanceData, null, 2));
- console.log("Hello world");
+ 
   // Respond to the request
   res.end();
 });
 
-
-
-app.get('/edit', (req, res) => {
-    res.render('edit'); 
-  });
   app.get('/delete', (req, res) => {
     res.render('delete'); 
   });
-  app.get('/attendance', (req, res) => {
-    res.render("attendance");
+  app.get('/overall', (req, res) => {
+    res.render("overall");
   });
-
+  app.get('/register', (req, res) => {
+    res.render("register");
+  });
 // const dataPath = 'attendance.json';
 
 // app.get('/attendance', (req, res) => {

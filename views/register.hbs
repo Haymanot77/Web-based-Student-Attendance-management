@@ -1,37 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css" />
-<title>Manage Students</title>
-</head>
-<body>
-
- <a href="/" >Take Attendance</a>
+    <head>
+        <title>IST4035 Students</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body onload="fetchStudents()">
+        <a href="/" onclick="">Take Attendance</a>
         <a href="/overall" onclick="">Overall</a>
-      <button onclick="openAdd()">Register Student</button>
+     <button onclick="openAdd()">Register Student</button>
         <a href="/delete" onclick="">Delete Student</a>
-
-<h2>Student List</h2>
-
-<table id="studentTable">
-  <thead>
-    <tr>
-      <th>Student ID</th>
-      <th>Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody id="studentList">
-    <!-- Student data will be inserted here -->
-  </tbody>
-</table>
-
-
-
-
-
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -62,8 +40,6 @@
  <table id="content">
 </table>
  </body>
- <script src="js/register.js"></script>
-<script src="js/delete.js"></script>
 
-
+    
 </html>

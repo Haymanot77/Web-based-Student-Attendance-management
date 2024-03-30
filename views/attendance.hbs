@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css" />
 <title>Attendance Form</title>
 <style>
     table {
@@ -30,6 +31,10 @@
 </style>
 </head>
 <body >
+    <a href="/" >Take Attendance</a>
+        <a href="/overall" onclick="">Overall</a>
+        <button onclick="openAdd()">Register Student</button>
+        <a href="/delete" onclick="">Delete Student</a>
 
 <form id="attendanceForm">
     <table>
@@ -41,7 +46,7 @@
             <tr>
                 <th>Student ID</th>
                 <th>Name</th>
-                <td>Mark</td>
+                <th>Score</th>
                 <th>Present</th>
                 <th>Absent</th>
                 <th>Excused</th>
@@ -55,7 +60,35 @@
 
     <button type="submit" id="submit">Submit</button>
 </form>
-
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close" onclick="closeAdd()">&times;</span>
+            <h1>Student Register</h1>
+            <div>
+                <form>
+                    <label>
+                        <span>Student id:</span>
+                        <input id="studentId" type="text" />
+                    </label>
+                    <label>
+                        <span>Student name:</span>
+                        <input id="studentName" type="text" />
+                    </label>
+                    <label>
+                        <span> </span>
+                        <button >Add student</button>
+                    </label>
+                </form>
+                
+               
+            </div>
+        </div>
+    </div>
+    
+ </body>
 <script src="js/attendance.js"></script>
-</body>
+<script src="js/register.js"></script>
+
 </html>
