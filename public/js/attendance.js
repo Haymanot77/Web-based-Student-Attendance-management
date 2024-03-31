@@ -1,4 +1,5 @@
-var server='http://localhost:3000';
+
+var server='http://localhost:3000'
 
 // Function to format date as YYYY-MM-DD
 function formatDate(date) {
@@ -24,7 +25,7 @@ function createStudentRow(student) {
 
     idCell.textContent = student.id;
     nameCell.textContent = student.name;
-    markCell.textContent = ''; // Initial value for mark cell
+    //markCell.textContent = ''; // Initial value for mark cell
     presentCell.textContent = '-';
     presentCell.classList.add('status', 'present');
     absentCell.textContent = '-';
@@ -34,7 +35,7 @@ function createStudentRow(student) {
 
     row.appendChild(idCell);
     row.appendChild(nameCell);
-    row.appendChild(markCell); // Add mark cell to the row
+    //row.appendChild(markCell); // Add mark cell to the row
     row.appendChild(presentCell);
     row.appendChild(absentCell);
     row.appendChild(excusedCell);
@@ -99,22 +100,20 @@ function markAttendance(cell) {
     switch (newStatus) {
         case 'present':
             symbol = '✔️';
-            mark = '100%';
-            bgcolor="green";
+           
             break;
         case 'absent':
             symbol = '❌';
-            mark = '0%';
-            bgcolor="red";
+           
+          
             break;
         case 'excused':
             symbol = '⚠️';
-            mark = '';
-            bgcolor="yellow";
+          
             break;
         default:
             symbol = '-';
-            mark = '';
+           
     }
 
     // Update cell content and class
@@ -123,9 +122,9 @@ function markAttendance(cell) {
    
 
     // Update mark cell content
-    const row = cell.parentNode;
-    const markCell = row.querySelector('td:nth-child(3)'); // Assuming mark cell is the third cell
-    markCell.textContent = mark;
+    // const row = cell.parentNode;
+    // const markCell = row.querySelector('td:nth-child(3)'); // Assuming mark cell is the third cell
+    // markCell.textContent = mark;
 
       // Clear other statuses in the same row
       const siblings = cell.parentNode.children;
@@ -149,61 +148,54 @@ document.getElementById('studentDataBody').addEventListener('click', function(ev
 //To add the data in to the server 
 // Function to submit attendance data to the server
 async function submitAttendance(event) {
+   
     event.preventDefault();
     // Collect attendance data
-    const presentIds = [];
-    const absentIds = [];
-    const excusedIds = [];
+   // Collect attendance data
+   const attendanceData = {};
+   // Iterate through each cell with the class 'status'
+   document.querySelectorAll('#studentDataBody tr').forEach(row => {
+    // Extract student ID from the first cell in the row
+    const studentId = row.children[0].textContent;
 
-    document.querySelectorAll('.status').forEach(cell => {
-        // Get the parent row of the cell
-        const row = cell.parentNode;
-    
-        // Extract student ID from the row
-        const studentId = row.children[0].textContent; // Assuming student ID is in the first column
-    
-        // Check if the cell is selected (not equal to '-')
-        if (cell.textContent !== '-') {
-            // Extract status from the cell class
-            const status = cell.classList.contains('present') ? 'present' :
-                           cell.classList.contains('absent') ? 'absent' :
-                           cell.classList.contains('excused') ? 'excused' : 'unknown';
-    
-            // Push student ID based on the selected status
-            switch (status) {
-                case 'present':
-                    presentIds.push(studentId);
-                    break;
-                case 'absent':
-                    absentIds.push(studentId);
-                    break;
-                case 'excused':
-                    excusedIds.push(studentId);
-                    break;
-                default:
-                    break;
-            }
-        }
-    });
-    
-    // Create attendance data object
-    const date = formatDate(new Date());
-    const attendanceData = {
-        [date]: {
-            present: presentIds,
-            absent: absentIds,
-            excused: excusedIds
-        }
-    };
+    // Extract status from the 'Present', 'Absent', and 'Excused' cells
+    const presentCell = row.querySelector('.present');
+    const absentCell = row.querySelector('.absent');
+    const excusedCell = row.querySelector('.excused');
+
+    // Determine the status based on the content of the cells
+    let status;
+    if (presentCell.textContent === '✔️') {
+        status = 'present';
+    } else if (absentCell.textContent === '❌') {
+        status = 'absent';
+    } else if (excusedCell.textContent === '⚠️') {
+        status = 'excused';
+    } else {
+        status = 'unknown';
+    }
+
+    // Extract date from the header
+    const date = document.getElementById('date').textContent;
+
+    // Add status to attendance data
+    if (!attendanceData[date]) {
+        attendanceData[date] = {};
+    }
+    attendanceData[date][studentId] = { status };
+});
+
 
     // Send attendance data to the server
     const url = server + '/attendance';
     const options = {
+        
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(attendanceData)
+      
     };
 
     try {
@@ -227,3 +219,56 @@ document.querySelectorAll('#submit').forEach(button => {
     button.addEventListener('click', submitAttendance);
    
 });
+
+
+
+//Registering a student
+
+var studentId;
+var studentName;
+
+
+
+async function addStudent() {
+    const url = server + '/students';
+    const student = {id: studentId, name: studentName};
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify(student)
+    }
+    const response = await fetch(url, options);
+    alert("Student added successfully!");
+    closeAdd(); 
+}
+
+document.document.getElementById('addStudent').addEventListener('click',async (e) => {
+    studentId = document.getElementById('studentId').value;
+    studentName = document.getElementById('studentName').value;
+    if (studentId && studentName) {
+        studentId = parseInt(studentId);
+        //if(typeof studentId==='Number'){
+            await addStudent();
+          //  await fetchStudents();
+           
+       // }
+      
+           
+       
+    }
+    e.preventDefault();
+});
+
+
+function openAdd() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "block";
+}
+
+function closeAdd() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+}
+

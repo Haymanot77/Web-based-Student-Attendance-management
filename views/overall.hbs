@@ -4,6 +4,8 @@
         <title>IST4035 Students</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/overall.css">
+         <link rel="stylesheet" href="css/register.css">
     </head>
     <body onload="fetchStudents()">
          <a href="/" >Take Attendance</a>
@@ -38,9 +40,43 @@
             </div>
         </div>
     </div>
- <table id="content">
-</table>
+ 
+
+
+
+
+ <!-- Student information table -->
+
+
+<div class="container">
+    <div class="student-info">
+    <table id="student-info-table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Student info table content goes here -->
+        </tbody>
+    </table>
+    </div>
+    <div class="data-div">
+    <table id="dates-table">
+        <thead>
+            <tr>
+                <!-- Dates will be populated here -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Student attendance data goes here -->
+        </tbody>
+    </table>
+</div>
+
  </body>
-    <script src="js/main.js"></script>
-    
+    <script src="js/overall.js"></script>
+ 
 </html>
