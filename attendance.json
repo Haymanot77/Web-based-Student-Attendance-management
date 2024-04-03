@@ -3,6 +3,9 @@
     "56": {
       "status": "present"
     },
+    "6767": {
+      "status": "present"
+    },
     "670556": {
       "status": "present"
     }
@@ -10,6 +13,9 @@
   "2024-04-01": {
     "56": {
       "status": "absent"
+    },
+    "6767": {
+      "status": "present"
     },
     "670556": {
       "status": "absent"

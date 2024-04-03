@@ -44,9 +44,6 @@ function createStudentRow(student) {
 }
 
 
-
-
-
 async function fetchStudentData() {
     try {
       var  server='http://localhost:3000';
@@ -230,35 +227,43 @@ var studentName;
 
 
 async function addStudent() {
+    const server = 'http://localhost:3000'; // Assuming your server URL
     const url = server + '/students';
-    const student = {id: studentId, name: studentName};
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(student)
+    const studentId = document.getElementById('studentId').value;
+    const studentName = document.getElementById('studentName').value;
+
+    if (studentId && studentName) {
+        const student = { id: parseInt(studentId), name: studentName }; // Create student object
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(student)
+        };
+
+        try {
+            const response = await fetch(url, options);
+            if (response.ok) {
+                alert("Student added successfully!");
+                closeAdd();
+            } else {
+                throw new Error('Failed to add student');
+            }
+        } catch (error) {
+            console.error('Error adding student:', error);
+            alert('Failed to add student. Please try again.');
+        }
+    } else {
+        alert('Please enter valid student ID and name.');
     }
-    const response = await fetch(url, options);
-    alert("Student added successfully!");
-    closeAdd(); 
 }
 
-document.document.getElementById('addStudent').addEventListener('click',async (e) => {
-    studentId = document.getElementById('studentId').value;
-    studentName = document.getElementById('studentName').value;
-    if (studentId && studentName) {
-        studentId = parseInt(studentId);
-        //if(typeof studentId==='Number'){
-            await addStudent();
-          //  await fetchStudents();
-           
-       // }
-      
-           
-       
-    }
+
+
+document.getElementById('addStudent').addEventListener('click', async (e) => {
     e.preventDefault();
+    await addStudent();
 });
 
 
