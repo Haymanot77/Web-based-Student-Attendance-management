@@ -4,18 +4,15 @@
         <title>IST4035 Students</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/overall.css">
+         <link rel="stylesheet" href="css/register.css">
     </head>
     <body onload="fetchStudents()">
-        <a href="/" onclick="">Overall</a>
-        <a href="/attendance" onclick="">Take Attendance</a>
-        <a href="/edit" onclick="">Edit Attendance</a>
+         <a href="/" >Take Attendance</a>
+        <a href="/overall" onclick="">Overall</a>
         <button onclick="openAdd()">Register Student</button>
         <a href="/delete" onclick="">Delete Student</a>
-{{!-- <button onclick="" >Overall</button>
-<button onclick="">Take Attendance</button>
-<button onclick="">Edit Attendance</button>
-<button onclick="openAdd()">Add Attendance</button>
-<button onclick="">Delete Attendance</button> --}}
+
 
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -43,9 +40,43 @@
             </div>
         </div>
     </div>
- <table id="content">
-</table>
+ 
+
+
+
+
+ <!-- Student information table -->
+
+
+<div class="container">
+    <div class="student-info">
+    <table id="student-info-table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Student info table content goes here -->
+        </tbody>
+    </table>
+    </div>
+    <div class="data-div">
+    <table id="dates-table">
+        <thead>
+            <tr>
+                <!-- Dates will be populated here -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Student attendance data goes here -->
+        </tbody>
+    </table>
+</div>
+
  </body>
-    <script src="js/main.js"></script>
-    
+    <script src="js/overall.js"></script>
+ 
 </html>

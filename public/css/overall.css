@@ -1,0 +1,42 @@
+/* Style for the tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid black;
+}
+
+/* Style for the date links */
+.date-link {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+}
+
+/* Style for the container div */
+.container {
+   display: flexbox;
+   display: grid;
+  grid-template-columns: auto auto;
+}
+
+/* Style for the student info table */
+#student-info-table {
+    width: calc(50% - 20px); /* Adjust as needed */
+    vertical-align: top;
+    margin-right: 20px; /* Adjust as needed */
+}
+
+/* Style for the dates table */
+#dates-table {
+    width: calc(50% - 20px); /* Adjust as needed */
+    
+}
+.student-info,.data-div{
+    width:100%
+}

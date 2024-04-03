@@ -3,9 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/register.css" />
 <title>Manage Students</title>
 </head>
 <body>
+
+ <a href="/" >Take Attendance</a>
+        <a href="/overall" onclick="">Overall</a>
+      <button onclick="openAdd()">Register Student</button>
+        <a href="/delete" onclick="deleteStudent()">Delete Student</a> <!-- Added onclick event to call deleteStudent function -->
 
 <h2>Student List</h2>
 
@@ -21,6 +28,32 @@
     <!-- Student data will be inserted here -->
   </tbody>
 </table>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" onclick="closeAdd()">&times;</span>
+        <h1>Student Register</h1>
+        <div>
+            <form>
+                <label>
+                    <span>Student id:</span>
+                    <input id="studentId" type="text" />
+                </label>
+                <label>
+                    <span>Student name:</span>
+                    <input id="studentName" type="text" />
+                </label>
+                <label>
+                    <span> </span>
+                    <button onclick="addStudent()">Add student</button> <!-- Added onclick event to call addStudent function -->
+                </label>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 <script src="js/delete.js"></script>
 
