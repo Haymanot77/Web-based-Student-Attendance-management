@@ -5,38 +5,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/style.css" />
 <link rel="stylesheet" href="css/register.css" />
-<title>Attendance Form</title>
-
+<title>Manage Students</title>
 </head>
-<body >
-    <a href="/" >Take Attendance</a>
+<body>
+
+ <a href="/" >Take Attendance</a>
         <a href="/overall" onclick="">Overall</a>
-        <a href="/managestudents" >Delete Student</a>
+      <button onclick="openAdd()">Register Student</button>
+        <a href="/delete" onclick="">Delete Student</a>
 
-<form id="attendanceForm">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="3">Date: <span id="date"></span></th>
-                <th colspan="3">Attendance</th>
-            </tr>
-            <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Present</th>
-                <th>Absent</th>
-                <th>Excused</th>
-            </tr>
-        </thead>
-        <tbody id="studentDataBody">
-            <!-- Student data will be inserted here -->
-            
-        </tbody>
-    </table>
+<h2>Student List</h2>
 
-    <button type="submit" id="submit">Submit</button>
-</form>
-    <!-- The Modal -->
+<table id="studentTable">
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="studentList">
+    <!-- Student data will be inserted here -->
+  </tbody>
+</table>
+
+
+
+
+
+
     <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
@@ -55,16 +52,19 @@
                     </label>
                     <label>
                         <span> </span>
-                        <button id="addStudent">Add student</button>
+                        <button >Add student</button>
                     </label>
                 </form>
                 
                
             </div>
         </div>
-    
+    </div>
+ <table id="content">
+</table>
  </body>
-<script src="js/attendance.js"></script>
+ 
+<script src="js/delete.js"></script>
 
 
 </html>

@@ -1,19 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>IST4035 Students</title>
-        <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/overall.css">
-         <link rel="stylesheet" href="css/register.css">
-    </head>
-    <body onload="fetchStudents()">
-         <a href="/" >Take Attendance</a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/register.css" />
+<title>Manage Students</title>
+</head>
+<body>
+
+ <a href="/" >Take Attendance</a>
         <a href="/overall" onclick="">Overall</a>
+  
         <a href="/managestudents" onclick="">Delete Student</a>
 
 
-    <!-- The Modal -->
+
+  <button onclick="openAdd()">Register Student</button>
+
+
+<h2>Student List</h2>
+
+<table id="studentTable">
+  <thead>
+    <tr>
+      <th>Student ID</th>
+      <th>Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody id="studentList">
+    <!-- Student data will be inserted here -->
+  </tbody>
+</table>
+
+
+      <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -40,7 +62,7 @@
                 </div>
                 <label>
                         <span> </span>
-                        <button >Add student</button>
+                        <button id="addStudent">Add student</button>
                     </label>
                 </form>
                 
@@ -48,43 +70,12 @@
             </div>
         </div>
     </div>
+
+
  
-
-
-<div> <button onclick="openAdd()">Register Student</button></div>
-
- <!-- Student information table -->
-
-
-<div class="container">
-    <div class="student-info">
-    <table id="student-info-table">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student info table content goes here -->
-        </tbody>
-    </table>
-    </div>
-    <div class="data-div">
-    <table id="dates-table">
-        <thead>
-            <tr>
-                <!-- Dates will be populated here -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student attendance data goes here -->
-        </tbody>
-    </table>
-</div>
-</div>
  </body>
-    <script src="js/overall.js"></script>
  
+<script src="js/delete.js"></script>
+<script src="js/register.js"></script>
+
 </html>
