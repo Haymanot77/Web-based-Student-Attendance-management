@@ -52,7 +52,7 @@ function calculateScore(studentId, attendanceData) {
             totalDaysPresent++;
         } else if (status === 'absent') {
             totalScore += 0;
-        } else if (status === 'excused') {
+        } else if (status === 'excused' || status==='late') {
             totalDaysExcused++;
         }
     });
@@ -109,6 +109,9 @@ async function populateContent(students, attendanceData) {
                 case 'excused':
                     cell.textContent = '⚠️'; // Caution symbol for excused
                     break;
+                case 'late':
+                    cell.textContent = 'late';
+                    break;
                 default:
                     cell.textContent = '-';
             }
@@ -138,6 +141,8 @@ function calculateScore(studentId, attendanceData) {
                 case 'excused':
                     excusedCount++;
                     break;
+                case 'late':
+                    excusedCount++
             }
         }
     });
@@ -159,20 +164,82 @@ var studentName;
 
 
 
+
+async function hasAttendanceData() {
+    const response = await fetch(`${server}/attendance`);
+    const data = await response.json();
+    return Object.keys(data).length > 0; // Check if there is any attendance data
+}
+
+// Function to toggle attendance selection based on whether attendance data exists
+async function toggleAttendanceSelection() {
+    const attendanceSelection = document.getElementById('attendanceSelection');
+    if (await hasAttendanceData()) {
+        attendanceSelection.style.display = 'block'; // Show attendance selection
+    } else {
+        attendanceSelection.style.display = 'none'; // Hide attendance selection
+    }
+}
+
+// Call toggleAttendanceSelection on page load
+toggleAttendanceSelection();
+
+
+
+
 async function addStudent() {
     const url = server + '/students';
-    const student = {id: studentId, name: studentName};
+    const student = {
+        id: studentId,
+        name: studentName,
+        attendanceStatus: document.getElementById('attendanceStatus') ? document.getElementById('attendanceStatus').value : null // Get the attendance status if available
+    };
+
+    // Check if student with the same ID already exists
+    const existingStudents = await fetchStudentData();
+    const studentExists = existingStudents.some(existingStudent => existingStudent.id === studentId);
+    if (studentExists) {
+        alert("A student with this ID already exists.");
+        return;
+    }
+
+
+    
     const options = {
         method: 'POST',
         headers: {
-            'Content-Type' : 'application/json'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(student)
-    }
+    };
     const response = await fetch(url, options);
+    if (!response.ok) {
+        throw new Error('Failed to add student');
+    }
+    // Update attendance status for all dates that have been marked for other students
+    const attendanceResponse = await fetch(`${server}/attendance`);
+    const attendanceData = await attendanceResponse.json();
+    const dates = Object.keys(attendanceData);
+    const updatedAttendanceData = {};
+    dates.forEach(date => {
+        if (!attendanceData[date][student.id]) {
+            // Update attendance status for the student if not already marked
+            attendanceData[date][student.id] = student.attendanceStatus || 'late'; // Use the attendance status if available, otherwise default to 'late'
+        }
+        updatedAttendanceData[date] = attendanceData[date];
+    });
+    const attendanceOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedAttendanceData)
+    };
+    await fetch(`${server}/attendance`, attendanceOptions);
     alert("Student added successfully!");
-    closeAdd(); 
+    closeAdd();
 }
+
 
 document.querySelector('form').addEventListener('submit',async (e) => {
     studentId = document.getElementById('studentId').value;

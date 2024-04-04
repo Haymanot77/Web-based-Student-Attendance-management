@@ -10,8 +10,7 @@
     <body onload="fetchStudents()">
          <a href="/" >Take Attendance</a>
         <a href="/overall" onclick="">Overall</a>
-        <button onclick="openAdd()">Register Student</button>
-        <a href="/delete" onclick="">Delete Student</a>
+        <a href="/managestudents" onclick="">Delete Student</a>
 
 
     <!-- The Modal -->
@@ -30,7 +29,16 @@
                         <span>Student name:</span>
                         <input id="studentName" type="text" />
                     </label>
-                    <label>
+                     <div id="attendanceSelection" style="display: none;">
+                    <label for="attendanceStatus">
+                        <span>Attendance Status:</span>
+                        <select id="attendanceStatus">
+                            <option value="late">Late</option>
+                            <option value="absent">Absent</option>
+                        </select>
+                    </label>
+                </div>
+                <label>
                         <span> </span>
                         <button >Add student</button>
                     </label>
@@ -43,7 +51,7 @@
  
 
 
-
+<div> <button onclick="openAdd()">Register Student</button></div>
 
  <!-- Student information table -->
 
@@ -75,7 +83,7 @@
         </tbody>
     </table>
 </div>
-
+</div>
  </body>
     <script src="js/overall.js"></script>
  

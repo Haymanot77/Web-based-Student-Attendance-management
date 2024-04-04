@@ -1,33 +1,72 @@
 {
-  "2024-03-31": {
-    "56": {
-      "status": "present"
+  "2024-04-03": {
+    "89": {
+      "status": "late"
     },
-    "670556": {
-      "status": "present"
-    }
-  },
-  "2024-04-01": {
-    "56": {
+    "454": {
       "status": "absent"
     },
-    "670556": {
+    "1234": {
+      "status": "late"
+    },
+    "2345": {
+      "status": "present"
+    },
+    "5657": {
       "status": "absent"
+    },
+    "6778": {
+      "status": "absent"
+    },
+    "34545": {
+      "status": "late"
+    },
+    "56789": {
+      "status": "late"
+    },
+    "567768": {
+      "status": "late"
+    },
+    "670890": {
+      "status": "excused"
+    },
+    "670978": {
+      "status": "late"
     }
   },
-  "2024-09-31": {
-    "670556": {
+  "2024-04-04": {
+    "89": {
+      "status": "late"
+    },
+    "454": {
       "status": "present"
-    }
-  },
-  "2024-08-01": {
-    "670556": {
+    },
+    "1234": {
+      "status": "late"
+    },
+    "2345": {
       "status": "present"
-    }
-  },
-  "2024-09-01": {
-    "670556": {
+    },
+    "5657": {
       "status": "present"
+    },
+    "6778": {
+      "status": "present"
+    },
+    "34545": {
+      "status": "unknown"
+    },
+    "56789": {
+      "status": "late"
+    },
+    "567768": {
+      "status": "present"
+    },
+    "670890": {
+      "status": "absent"
+    },
+    "670978": {
+      "status": "late"
     }
   }
 }

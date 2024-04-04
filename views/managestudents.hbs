@@ -11,8 +11,13 @@
 
  <a href="/" >Take Attendance</a>
         <a href="/overall" onclick="">Overall</a>
-    
+  
         <a href="/managestudents" onclick="">Delete Student</a>
+
+
+
+  <button onclick="openAdd()">Register Student</button>
+
 
 <h2>Student List</h2>
 
@@ -30,11 +35,7 @@
 </table>
 
 
-
-
-
-
-    <!-- The Modal -->
+      <!-- The Modal -->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -50,9 +51,18 @@
                         <span>Student name:</span>
                         <input id="studentName" type="text" />
                     </label>
-                    <label>
+                     <div id="attendanceSelection" style="display: none;">
+                    <label for="attendanceStatus">
+                        <span>Attendance Status:</span>
+                        <select id="attendanceStatus">
+                            <option value="late">Late</option>
+                            <option value="absent">Absent</option>
+                        </select>
+                    </label>
+                </div>
+                <label>
                         <span> </span>
-                        <button >Add student</button>
+                        <button id="addStudent">Add student</button>
                     </label>
                 </form>
                 
@@ -60,11 +70,12 @@
             </div>
         </div>
     </div>
- <table id="content">
-</table>
+
+
+ 
  </body>
  
 <script src="js/delete.js"></script>
-
+<script src="js/register.js"></script>
 
 </html>
