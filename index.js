@@ -30,7 +30,7 @@ app.get('/attendance', (request, response) => {
 });
 
 
-// This is a RESTful POST web service
+// This is a RESTful POST web service for adding students
 app.post('/students', jsonParser, (request, response) => {
   datalengh=data.length
   console.log(datalengh)
@@ -66,6 +66,36 @@ function updateAttendanceStatus(studentId, status) {
 }
 
 
+  try {
+    if (!Array.isArray(data)) {
+      data = []; // Initialize 'data' as an empty array if it's not already an array
+    }
+
+    // Assuming 'data' is an array containing student records
+    const dataLength = data.length; // Get the current length of the 'data' array
+    console.log(dataLength); // Log the current length to the console
+
+    // Check if 'id' field is a number
+    if (typeof request.body["id"] !== 'number') {
+      throw new Error("Invalid 'id' field. Please provide a numeric ID.");
+    }
+
+    // Add the new student data to the 'data' array
+    data.push(request.body);
+
+    // Determine the data type of the 'id' field
+    const dataType = typeof request.body["id"];
+
+    // Write updated data to the JSON file synchronously
+    fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
+
+    // End the response
+    response.end();
+  } catch (error) {
+    console.error('Error adding student:', error.message);
+    response.status(400).json({ error: error.message });
+  }
+});
 
 // Define the file path
 const studentsFilePath = './students.json';
@@ -122,36 +152,23 @@ app.post('/attendance', jsonParser, (req, res) => {
 });
 
 
-//for deleting student record
-
-
-// Function to read students data from JSON file
-// This is a RESTful DELETE web service to delete a student by ID
-// Function to delete a student and their attendance records
-function deleteStudentAndAttendance(studentId) {
+// Endpoint to handle DELETE request for deleting a student by ID
+app.delete('/students/:id', (req, res) => {
   try {
-    let studentsData = readStudentsData();
-    let attendanceData = readAttendanceData();
+      const studentIdToDelete = req.params.id; // Extract student ID from the URL params
 
-    // Filter out the student from the students data
-    studentsData = studentsData.filter(student => student.id !== studentId);
+      // Find the index of the student with the specified ID in the 'data' array
+      const index = data.findIndex(student => student.id === parseInt(studentIdToDelete));
 
-    // Remove the attendance records associated with the deleted student
-    for (let date in attendanceData) {
-        delete attendanceData[date][studentId];
-    }
+      if (index === -1) {
+          throw new Error('Student not found.');
+      }
 
-    // Write updated student data back to students.json
-    writeStudentsData(studentsData);
+      // Remove the student from the 'data' array
+      const deletedStudent = data.splice(index, 1)[0];
 
-    // Write updated attendance data back to attendance.json
-    writeAttendanceData(attendanceData);
-  } catch (error) {
-    console.error('Error deleting student and attendance:', error);
-    throw error; // Rethrow the error to propagate it to the caller
-  }
-}
-
+      // Write updated data to a JSON file
+      fs.writeFileSync('students.json', JSON.stringify(data, null, 2));
 
 // Express route handler for deleting a student
 app.delete('/students/:id', (req, res) => {
@@ -178,6 +195,12 @@ app.delete('/students/:id', (req, res) => {
     console.error('Error deleting student:', error.message);
     res.status(404).json({ error: error.message });
 }
+
+      res.status(200).json({ message: 'Student deleted successfully', student: deletedStudent });
+  } catch (error) {
+      console.error('Error deleting student:', error.message);
+      res.status(404).json({ error: error.message });
+  }
 });
 
 

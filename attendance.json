@@ -10,12 +10,22 @@
       "status": "late"
     },
     "2345": {
+=======
+    "6767": {
+      "status": "present"
+    },
+    "670556": {
       "status": "present"
     },
     "5657": {
       "status": "absent"
     },
     "6778": {
+=======
+    "6767": {
+      "status": "present"
+    },
+    "670556": {
       "status": "absent"
     },
     "34545": {
