@@ -3,35 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/register.css" />
+{{!-- <link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/register.css" /> --}}
+<link rel="stylesheet" href="css/usiu.css" />
 <title>Manage Students</title>
 </head>
+
 <body>
 
- <a href="/" >Take Attendance</a>
-        <a href="/overall" onclick="">Overall</a>
+  <header id="header">
+            <ul id="navbar">
+                <li><a href="/" >Take Attendance</a></li>
+                <li><a href="/overall" onclick="">Overall</a></li>
+                <li><a class="active" href="/delete" onclick="">Manage students</a></li>
+            </ul>
+    </header>
     
-        <a href="/managestudents" onclick="">Delete Student</a>
-=======
-      <button onclick="openAdd()">Register Student</button>
-        <a href="/delete" onclick="deleteStudent()">Delete Student</a> <!-- Added onclick event to call deleteStudent function -->
+<div class="content-container">
+  <h2>Student Management</h2>
+  <button class="register" onclick="openAdd()">Register Student</button>
+  <form>
+    <table id="studentTable">
+      <thead>
+        <tr>
+          <th>Student ID</th>
+          <th>Name</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody id="studentList">
+        <!-- Student data will be inserted here -->
+      </tbody>
+    </table>
+  </form>
 
-
-<h2>Student List</h2>
-
-<table id="studentTable">
-  <thead>
-    <tr>
-      <th>Student ID</th>
-      <th>Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody id="studentList">
-    <!-- Student data will be inserted here -->
-  </tbody>
-</table>
+</div>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -51,7 +57,7 @@
                 </label>
                 <label>
                     <span> </span>
-                    <button onclick="addStudent()">Add student</button> <!-- Added onclick event to call addStudent function -->
+                    <button class="add" onclick="addStudent()">Add student</button> <!-- Added onclick event to call addStudent function -->
                 </label>
             </form>
         </div>

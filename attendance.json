@@ -10,7 +10,8 @@
       "status": "late"
     },
     "2345": {
-
+      "status": "late"
+    },
     "6767": {
       "status": "present"
     },
@@ -19,9 +20,7 @@
     },
     "5657": {
       "status": "absent"
-    },
-
-    
+    },    
     "34545": {
       "status": "late"
     },
@@ -73,5 +72,3 @@
       "status": "late"
     }
   }
-}
-}

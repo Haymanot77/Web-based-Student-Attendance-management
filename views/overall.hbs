@@ -3,87 +3,51 @@
     <head>
         <title>IST4035 Students</title>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/overall.css">
-         <link rel="stylesheet" href="css/register.css">
+        <link rel="stylesheet" href="css/usiu.css" />
+        {{!-- <link rel="stylesheet" href="css/overall.css">
+         <link rel="stylesheet" href="css/register.css"> --}}
     </head>
+
     <body onload="fetchStudents()">
-         <a href="/" >Take Attendance</a>
-        <a href="/overall" onclick="">Overall</a>
-        <a href="/managestudents" onclick="">Delete Student</a>
 
+        <header id="header">
+                <ul id="navbar">
+                    <li><a href="/" >Take Attendance</a></li>
+                    <li><a class="active" href="/overall" onclick="">Overall</a></li>
+                    <li><a href="/delete" onclick="">Manage students</a></li>
+                </ul>
+        </header>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" onclick="closeAdd()">&times;</span>
-            <h1>Student Register</h1>
-            <div>
-                <form>
-                    <label>
-                        <span>Student id:</span>
-                        <input id="studentId" type="text" />
-                    </label>
-                    <label>
-                        <span>Student name:</span>
-                        <input id="studentName" type="text" />
-                    </label>
-                     <div id="attendanceSelection" style="display: none;">
-                    <label for="attendanceStatus">
-                        <span>Attendance Status:</span>
-                        <select id="attendanceStatus">
-                            <option value="late">Late</option>
-                            <option value="absent">Absent</option>
-                        </select>
-                    </label>
-                </div>
-                <label>
-                        <span> </span>
-                        <button >Add student</button>
-                    </label>
-                </form>
-                
-               
-            </div>
+        <div class="content-container ">
+            <h2>Overall Attendance <span id="date"></span></h2>
+        <!-- Student information table -->
+            <form class="overall-container">
+                <table id="student-info-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student info table content goes here -->
+                    </tbody>
+                </table>
+
+                <table id="dates-table">
+                    <thead>
+                        <tr>
+                            <!-- Dates will be populated here -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student attendance data goes here -->
+                    </tbody>
+                </table>
+            </form>
+
         </div>
-    </div>
- 
-
-
-<div> <button onclick="openAdd()">Register Student</button></div>
-
- <!-- Student information table -->
-
-
-<div class="container">
-    <div class="student-info">
-    <table id="student-info-table">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student info table content goes here -->
-        </tbody>
-    </table>
-    </div>
-    <div class="data-div">
-    <table id="dates-table">
-        <thead>
-            <tr>
-                <!-- Dates will be populated here -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student attendance data goes here -->
-        </tbody>
-    </table>
-</div>
-</div>
  </body>
     <script src="js/overall.js"></script>
  
