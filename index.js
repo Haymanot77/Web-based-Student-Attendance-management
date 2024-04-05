@@ -7,6 +7,7 @@ const jsonParser = bodyParser.json();
 const fileName = 'students.json';
 const attendanceFileName = 'attendance.json';
 const path = require('path');
+
 // Load data from file
 let rawData = fs.readFileSync(fileName);
 
@@ -15,9 +16,6 @@ let attendanceData = JSON.parse(fs.readFileSync(attendanceFileName));
 app.set('views', 'views');
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
-
-
-
 
 // This is a RESTful GET web service
 app.get('/students', (request, response) => {
@@ -30,7 +28,7 @@ app.get('/attendance', (request, response) => {
 });
 
 
-// This is a RESTful POST web service for adding students
+// This is a RESTful POST web service
 app.post('/students', jsonParser, (request, response) => {
   datalengh=data.length
   console.log(datalengh)
@@ -66,36 +64,6 @@ function updateAttendanceStatus(studentId, status) {
 }
 
 
-  try {
-    if (!Array.isArray(data)) {
-      data = []; // Initialize 'data' as an empty array if it's not already an array
-    }
-
-    // Assuming 'data' is an array containing student records
-    const dataLength = data.length; // Get the current length of the 'data' array
-    console.log(dataLength); // Log the current length to the console
-
-    // Check if 'id' field is a number
-    if (typeof request.body["id"] !== 'number') {
-      throw new Error("Invalid 'id' field. Please provide a numeric ID.");
-    }
-
-    // Add the new student data to the 'data' array
-    data.push(request.body);
-
-    // Determine the data type of the 'id' field
-    const dataType = typeof request.body["id"];
-
-    // Write updated data to the JSON file synchronously
-    fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
-
-    // End the response
-    response.end();
-  } catch (error) {
-    console.error('Error adding student:', error.message);
-    response.status(400).json({ error: error.message });
-  }
-});
 
 // Define the file path
 const studentsFilePath = './students.json';
@@ -152,23 +120,36 @@ app.post('/attendance', jsonParser, (req, res) => {
 });
 
 
-// Endpoint to handle DELETE request for deleting a student by ID
-app.delete('/students/:id', (req, res) => {
+//for deleting student record
+
+
+// Function to read students data from JSON file
+// This is a RESTful DELETE web service to delete a student by ID
+// Function to delete a student and their attendance records
+function deleteStudentAndAttendance(studentId) {
   try {
-      const studentIdToDelete = req.params.id; // Extract student ID from the URL params
+    let studentsData = readStudentsData();
+    let attendanceData = readAttendanceData();
 
-      // Find the index of the student with the specified ID in the 'data' array
-      const index = data.findIndex(student => student.id === parseInt(studentIdToDelete));
+    // Filter out the student from the students data
+    studentsData = studentsData.filter(student => student.id !== studentId);
 
-      if (index === -1) {
-          throw new Error('Student not found.');
-      }
+    // Remove the attendance records associated with the deleted student
+    for (let date in attendanceData) {
+        delete attendanceData[date][studentId];
+    }
 
-      // Remove the student from the 'data' array
-      const deletedStudent = data.splice(index, 1)[0];
+    // Write updated student data back to students.json
+    writeStudentsData(studentsData);
 
-      // Write updated data to a JSON file
-      fs.writeFileSync('students.json', JSON.stringify(data, null, 2));
+    // Write updated attendance data back to attendance.json
+    writeAttendanceData(attendanceData);
+  } catch (error) {
+    console.error('Error deleting student and attendance:', error);
+    throw error; // Rethrow the error to propagate it to the caller
+  }
+}
+
 
 // Express route handler for deleting a student
 app.delete('/students/:id', (req, res) => {
@@ -195,13 +176,41 @@ app.delete('/students/:id', (req, res) => {
     console.error('Error deleting student:', error.message);
     res.status(404).json({ error: error.message });
 }
+});
 
-      res.status(200).json({ message: 'Student deleted successfully', student: deletedStudent });
+
+// Endpoint to handle PUT request to update student name
+app.put('/students/:id', async (req, res) => {
+  const id = req.params.id;
+  const newName = req.body.name;
+
+  try {
+      // Read the student data from the file
+      let studentsData = await fs.readFile('students.json', 'utf8');
+      studentsData = JSON.parse(studentsData);
+
+      // Find the student with the given ID
+      const student = studentsData.find(student => student.id === id);
+      if (!student) {
+          return res.status(404).json({ error: 'Student not found' });
+      }
+
+      // Update the student's name
+      student.name = newName;
+
+      // Write the updated student data back to the file
+      await fs.writeFile('students.json', JSON.stringify(studentsData, null, 2));
+
+      // Send a success response
+      res.status(200).json({ message: 'Student name updated successfully', student });
   } catch (error) {
-      console.error('Error deleting student:', error.message);
-      res.status(404).json({ error: error.message });
+      console.error('Error updating student name:', error);
+      res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+
+
 
 
 app.get('/', (request, response) => {
