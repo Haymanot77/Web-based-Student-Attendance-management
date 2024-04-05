@@ -69,6 +69,7 @@ async function populateContent(students, attendanceData) {
     studentTable.innerHTML = '';
     datesTable.innerHTML = '';
     attendanceTable.innerHTML = '';
+    
 
     // Populate student info table
     students.forEach(student => {

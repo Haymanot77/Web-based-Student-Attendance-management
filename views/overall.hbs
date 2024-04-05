@@ -3,49 +3,51 @@
     <head>
         <title>IST4035 Students</title>
         <meta charset="utf-8"/>
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/overall.css">
-         <link rel="stylesheet" href="css/register.css">
+        <link rel="stylesheet" href="css/usiu.css" />
+        {{!-- <link rel="stylesheet" href="css/overall.css">
+         <link rel="stylesheet" href="css/register.css"> --}}
     </head>
+
     <body onload="fetchStudents()">
 
-    <section id="header">
-            <ul id="navbar">
-                <li><a href="/" >Take Attendance</a></li>
-                <li><a class="active" href="/overall" onclick="">Overall</a></li>
-                <li><button onclick="openAdd()">Register Student</button></li>
-                <li><a href="/delete" onclick="">Delete Student</a></li>
-            </ul>
-    </section>
+        <header id="header">
+                <ul id="navbar">
+                    <li><a href="/" >Take Attendance</a></li>
+                    <li><a class="active" href="/overall" onclick="">Overall</a></li>
+                    <li><a href="/delete" onclick="">Manage students</a></li>
+                </ul>
+        </header>
 
-    
- <!-- Student information table -->
+        <div class="content-container ">
+            <h2>Overall Attendance <span id="date"></span></h2>
+        <!-- Student information table -->
+            <form class="overall-container">
+                <table id="student-info-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student info table content goes here -->
+                    </tbody>
+                </table>
 
+                <table id="dates-table">
+                    <thead>
+                        <tr>
+                            <!-- Dates will be populated here -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student attendance data goes here -->
+                    </tbody>
+                </table>
+            </form>
 
-<form class="container">
-    <table id="student-info-table">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student info table content goes here -->
-        </tbody>
-    </table>
-    <table id="dates-table">
-        <thead>
-            <tr>
-                <!-- Dates will be populated here -->
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Student attendance data goes here -->
-        </tbody>
-    </table>
-</form>
+        </div>
 
  </body>
     <script src="js/overall.js"></script>

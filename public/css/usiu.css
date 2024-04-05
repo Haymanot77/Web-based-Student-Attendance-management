@@ -1,0 +1,265 @@
+body {
+    margin: 0;
+    padding: 0; /* Adjusted padding to 0 to remove space */
+    background-color: #fff; /* White background */
+    color: #333; /* Black text color */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/*
+    Navigation bar
+*/
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 20px 80px;
+    background: #2d3c90;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-bottom: 20px;
+    height: 9vh;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a , button {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover ,
+#navbar li a.active{
+    color: #fff;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 50%;
+    height: 1.5px;
+    background: #fff;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+/* body content */
+
+.content-container {
+    padding: 20px; /* Padding around the content */
+    margin: 20px;
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 5px; /* Border radius for rounded corners */
+    background-color: #f2f2f2; /* Light gray background */
+}
+
+/* Style for the container div */
+.overall-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
+    gap: 0px; /* Gap between grid items */
+    border: 1px #333;
+    padding: 20px;
+    overflow: scroll; /* Enable scrolling if needed */
+}
+
+/* Overall page */
+.date-link {
+    text-decoration: none;
+    color: #1f295d;
+    cursor: pointer;
+}
+
+.date-link:hover {
+    background-color: #2d3c90; /* Darker Color 1 background on hover */
+}
+
+#student-info-table {
+    width: calc(28.5vw - 20px); /* Adjust as needed */
+    vertical-align: top;
+    margin-right: 0px; /* Adjust as needed */
+    border-collapse: collapse;
+}
+
+#student-info-table th, #student-info-table td {
+    border: 1px solid #333; /* Color 1 border for table */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for the dates table */
+#dates-table {
+    width: calc(68.5vw - 20px); /* Adjust as needed */
+    vertical-align: top;
+    margin-left: 0px; /* Adjust as needed */
+    border-collapse: collapse;
+    margin-right: 2px;
+}
+
+#dates-table th, #dates-table td {
+    border: 1px solid #333; /* Color 1 border for table */
+    border-left: 0;
+    padding: 8px;
+    text-align: left;
+    width: 1000px; /* Set a specific width for each date column */
+}
+
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2d3c90; /* Color 1 for headings */
+    margin-top: 60px; /* Added margin-top to create space below the header */
+}
+
+.register {
+    background-color: #2d3c90; /* Color 1 background for register button */
+    color: #fff; /* White text color for register button */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: medium;
+    margin: 10px;
+}
+
+.register:hover {
+    background-color: #1f295d; /* Darker Color 1 background on hover */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #333; /* Color 1 border for table */
+    margin-bottom: 40px;
+}
+
+th,
+td {
+    border: 1px solid #333; /* Color 1 border for table cells */
+    padding: 8px;
+    text-align: left;
+}
+
+.hd0 {
+    background-color: #f2f2f2; /* Color 2 background for table headers */
+    color: #332900; /* White text color for table headers */
+
+}
+
+th {
+    background-color: #ffcc00; /* Color 2 background for table headers */
+    color: #332900; /* White text color for table headers */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light gray background for even rows */
+}
+
+tr:hover {
+    background-color: #ededed; /* Darker gray background for hover effect */
+}
+
+.delete-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: center;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    position: relative; /* Added relative positioning */
+    overflow: hidden; /* Hide overflow to prevent shadow overflow */
+}
+
+
+
+/* Modal container */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed position */
+    z-index: 1; /* Set the modal above everything else */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fff; /* White background */
+    margin: 10% auto; /* Center modal vertically and horizontally */
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%; /* Adjust width as needed */
+    max-width: 600px; /* Maximum width for the modal */
+    position: relative; /* Position relative for close button */
+}
+
+/* Close button (x) */
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 37px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+/* Close button hover effect */
+.close:hover {
+    color: #ff0000; /* Red color on hover */
+}
+
+/* Form styling */
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type='text'],
+.add {
+    width: 91.5%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 5px;
+}
+
+.add {
+    background-color: #2d3c90; /* Color 1 background for buttons */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 95%;
+
+}
+
+.add:hover {
+    background-color: #1f295d; /* Darker Color 1 background on hover */
+}

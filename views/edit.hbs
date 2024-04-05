@@ -3,43 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/usiu.css"/>
     <title>Document</title>
 </head>
+
 <body>
     
-    <section id="header">
+    <hedaer id="header">
             <ul id="navbar">
                 <li><a href="/" >Take Attendance</a></li>
                 <li><a class="active" href="/overall" onclick="">Overall</a></li>
-                <li><button onclick="openAdd()">Register Student</button></li>
-                <li><a href="/delete" onclick="">Delete Student</a></li>
+                <li><a href="/delete" onclick="">Manage students</a></li>
             </ul>
-    </section>
+    </hedaer>
 
-<form id="editAttendanceForm">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="3">Date: <span id="date"></span></th>
-                <th colspan="3">Attendance</th>
-            </tr>
-            <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Present</th>
-                <th>Absent</th>
-                <th>Excused</th>
-            </tr>
-        </thead>
-        <tbody id="studentDataBody">
-            <!-- Student data will be inserted here -->
-            
-        </tbody>
-    </table>
+<div class="content-container">
+        <h2>Attendance: <span id="date"></span></h2>
+        <form id="attendanceForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Excused</th>
+                    </tr>
+                </thead>
+                <tbody id="studentDataBody">
+                    <!-- Student data will be inserted here -->
+                    
+                </tbody>
+            </table>
 
-    <button type="submit" id="submit">Submit</button>
-</form>
+            <button class="register" type="submit" id="submit">Submit</button>
+        </form>
+    
+    </div>
 
     
 </body>
