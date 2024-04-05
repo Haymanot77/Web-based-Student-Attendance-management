@@ -7,7 +7,6 @@ const jsonParser = bodyParser.json();
 const fileName = 'students.json';
 const attendanceFileName = 'attendance.json';
 const path = require('path');
-
 // Load data from file
 let rawData = fs.readFileSync(fileName);
 
@@ -16,6 +15,9 @@ let attendanceData = JSON.parse(fs.readFileSync(attendanceFileName));
 app.set('views', 'views');
 app.set('view engine', 'hbs');
 app.use(express.static('public'));
+
+
+
 
 // This is a RESTful GET web service
 app.get('/students', (request, response) => {
@@ -30,38 +32,24 @@ app.get('/attendance', (request, response) => {
 
 // This is a RESTful POST web service
 app.post('/students', jsonParser, (request, response) => {
-  datalengh=data.length
-  console.log(datalengh)
-  if(typeof request.body["id"]!='number') {
-      // Handle invalid data
-      response.status(400).send("Invalid data format: ID must be a number.");
-  } else {
-      // Extract student data from request body
-      const { id, name, attendanceStatus } = request.body;
+    datalengh=data.length
+    console.log(datalengh)
+     if(typeof request.body["id"]!='number')
+     {
+     
+     }
+    
+else{
+ 
+    data.push(request.body);
+    datatype=typeof request.body["id"]
+    fs.writeFileSync(fileName, JSON.stringify(data, null, 2));
 
-      // Add the student to the data array
-      data.push({ id, name });
-
-      // Write updated student data back to students.json
-      writeStudentsData(data);
-
-      // If attendance status is provided, update attendance data
-      if (attendanceStatus) {
-          updateAttendanceStatus(id, attendanceStatus);
-      }
-
-      // Send response
-      response.status(201).send("Student added successfully!");
-  }
+   
+    response.end();
+        }
+  
 });
-
-// Function to update attendance status for a student
-function updateAttendanceStatus(studentId, status) {
-  for (let date in attendanceData) {
-      attendanceData[date][studentId] = { status };
-  }
-  writeAttendanceData(attendanceData);
-}
 
 
 
@@ -156,71 +144,20 @@ app.delete('/students/:id', (req, res) => {
   const studentId = parseInt(req.params.id);
 
   try {
-    const studentIdToDelete = req.params.id; // Extract student ID from the URL params
-
-    // Find the index of the student with the specified ID in the 'data' array
-    const index = data.findIndex(student => student.id === parseInt(studentIdToDelete));
-
-    if (index === -1) {
-        throw new Error('Student not found.');
-    }
-
-    // Remove the student from the 'data' array
-    const deletedStudent = data.splice(index, 1)[0];
-
-    // Write updated data to a JSON file
-    fs.writeFileSync('students.json', JSON.stringify(data, null, 2));
-
-    res.status(200).json({ message: 'Student deleted successfully', student: deletedStudent });
-} catch (error) {
-    console.error('Error deleting student:', error.message);
-    res.status(404).json({ error: error.message });
-}
-});
-
-
-// Endpoint to handle PUT request to update student name
-app.put('/students/:id', async (req, res) => {
-  const id = req.params.id;
-  const newName = req.body.name;
-
-  try {
-      // Read the student data from the file
-      let studentsData = await fs.readFile('students.json', 'utf8');
-      studentsData = JSON.parse(studentsData);
-
-      // Find the student with the given ID
-      const student = studentsData.find(student => student.id === id);
-      if (!student) {
-          return res.status(404).json({ error: 'Student not found' });
-      }
-
-      // Update the student's name
-      student.name = newName;
-
-      // Write the updated student data back to the file
-      await fs.writeFile('students.json', JSON.stringify(studentsData, null, 2));
-
-      // Send a success response
-      res.status(200).json({ message: 'Student name updated successfully', student });
+      // Delete the student and their attendance records
+      deleteStudentAndAttendance(studentId);
+      res.send('Student deleted successfully');
   } catch (error) {
-      console.error('Error updating student name:', error);
-      res.status(500).json({ error: 'Internal server error' });
+      console.error('Error deleting student:', error);
+      res.status(500).send('Failed to delete student');
   }
 });
-
-
-
-
 
 app.get('/', (request, response) => {
   response.render('attendance');
 });
   app.get('/delete', (req, res) => {
     res.render('delete'); 
-  });
-  app.get('/managestudents', (req, res) => {
-    res.render('managestudents'); 
   });
   app.get('/overall', (req, res) => {
     res.render("overall");
