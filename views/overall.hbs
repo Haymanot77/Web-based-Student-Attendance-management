@@ -8,48 +8,21 @@
          <link rel="stylesheet" href="css/register.css">
     </head>
     <body onload="fetchStudents()">
-         <a href="/" >Take Attendance</a>
-        <a href="/overall" onclick="">Overall</a>
-        <button onclick="openAdd()">Register Student</button>
-        <a href="/delete" onclick="">Delete Student</a>
 
+    <section id="header">
+            <ul id="navbar">
+                <li><a href="/" >Take Attendance</a></li>
+                <li><a class="active" href="/overall" onclick="">Overall</a></li>
+                <li><button onclick="openAdd()">Register Student</button></li>
+                <li><a href="/delete" onclick="">Delete Student</a></li>
+            </ul>
+    </section>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" onclick="closeAdd()">&times;</span>
-            <h1>Student Register</h1>
-            <div>
-                <form>
-                    <label>
-                        <span>Student id:</span>
-                        <input id="studentId" type="text" />
-                    </label>
-                    <label>
-                        <span>Student name:</span>
-                        <input id="studentName" type="text" />
-                    </label>
-                    <label>
-                        <span> </span>
-                        <button >Add student</button>
-                    </label>
-                </form>
-                
-               
-            </div>
-        </div>
-    </div>
- 
-
-
-
-
+    
  <!-- Student information table -->
 
 
-<div class="container">
-    <div class="student-info">
+<form class="container">
     <table id="student-info-table">
         <thead>
             <tr>
@@ -62,8 +35,6 @@
             <!-- Student info table content goes here -->
         </tbody>
     </table>
-    </div>
-    <div class="data-div">
     <table id="dates-table">
         <thead>
             <tr>
@@ -74,7 +45,7 @@
             <!-- Student attendance data goes here -->
         </tbody>
     </table>
-</div>
+</form>
 
  </body>
     <script src="js/overall.js"></script>

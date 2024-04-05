@@ -9,25 +9,31 @@
 </head>
 <body>
 
- <a href="/" >Take Attendance</a>
-        <a href="/overall" onclick="">Overall</a>
-      <button onclick="openAdd()">Register Student</button>
-        <a href="/delete" onclick="deleteStudent()">Delete Student</a> <!-- Added onclick event to call deleteStudent function -->
+  <section id="header">
+            <ul id="navbar">
+                <li><a href="/" >Take Attendance</a></li>
+                <li><a href="/overall" onclick="">Overall</a></li>
+                <li><button onclick="openAdd()">Register Student</button></li>
+                <li><a class="active" href="/delete" onclick="">Delete Student</a></li>
+            </ul>
+    </section>
 
 <h2>Student List</h2>
-
-<table id="studentTable">
-  <thead>
-    <tr>
-      <th>Student ID</th>
-      <th>Name</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody id="studentList">
-    <!-- Student data will be inserted here -->
-  </tbody>
+<form>
+  <table id="studentTable">
+    <thead>
+      <tr>
+        <th>Student ID</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="studentList">
+      <!-- Student data will be inserted here -->
+    </tbody>
 </table>
+
+</form>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

@@ -1,10 +1,15 @@
+body {
+    margin: 0;
+}
+
+
 table {
     margin: auto;
     width: 100%;
     border-top: 1px black solid;
 }
 div {
-    border: 1px black solid;
+    border: 0;
     width: 31em;
     margin: auto;
 }
@@ -38,3 +43,74 @@ td {
 .selected {
     background-color: lightblue;
 }
+
+/*
+    Navigation bar
+*/
+
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 20px 80px;
+    background: #dcdcdd;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    z-index: 999;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+
+#navbar li a , button {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    transition: 0.3s ease;
+}
+
+#navbar li a:hover ,
+#navbar li a.active{
+    color: #0d117e;
+}
+
+#navbar li a.active::after,
+#navbar li a:hover::after {
+    content: "";
+    width: 50%;
+    height: 1.5px;
+    background: #0d117e;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+}
+
+h2 {
+    margin-left: 1em;
+}
+
+
+
+.delete-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: center;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+

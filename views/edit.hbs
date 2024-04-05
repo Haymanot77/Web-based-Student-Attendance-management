@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/register.css" />
     <link rel="stylesheet" href="css/style.css"/>
     <title>Document</title>
 </head>
 <body>
-        <a href="/" >Take Attendance</a>
-        <a href="/overall" onclick="">Overall</a>
-        <button onclick="openAdd()">Register Student</button>
-        <a href="/delete" onclick="">Delete Student</a>
-
+    
+    <section id="header">
+            <ul id="navbar">
+                <li><a href="/" >Take Attendance</a></li>
+                <li><a class="active" href="/overall" onclick="">Overall</a></li>
+                <li><button onclick="openAdd()">Register Student</button></li>
+                <li><a href="/delete" onclick="">Delete Student</a></li>
+            </ul>
+    </section>
 
 <form id="editAttendanceForm">
     <table>
@@ -38,41 +41,6 @@
     <button type="submit" id="submit">Submit</button>
 </form>
 
-
-
-
-
-
-
-
-
-
-
-<div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" onclick="closeAdd()">&times;</span>
-            <h1>Student Register</h1>
-            <div>
-                <form>
-                    <label>
-                        <span>Student id:</span>
-                        <input id="studentId" type="text" />
-                    </label>
-                    <label>
-                        <span>Student name:</span>
-                        <input id="studentName" type="text" />
-                    </label>
-                    <label>
-                        <span> </span>
-                        <button >Add student</button>
-                    </label>
-                </form>
-                
-               
-            </div>
-        </div>
-    </div>
     
 </body>
  <script src="js/edit.js"></script>

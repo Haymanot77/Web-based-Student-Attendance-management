@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 /* Style for the tables */
 table {
     border-collapse: collapse;
@@ -20,23 +24,43 @@ th, td {
 
 /* Style for the container div */
 .container {
-   display: flexbox;
-   display: grid;
-  grid-template-columns: auto auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
+    gap: 0px; /* Gap between grid items */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    border: 0;
+    padding-top: 10px;
 }
+
 
 /* Style for the student info table */
 #student-info-table {
-    width: calc(50% - 20px); /* Adjust as needed */
+    width: calc(30vw - 20px); /* Adjust as needed */
     vertical-align: top;
-    margin-right: 20px; /* Adjust as needed */
+    margin-right: 0px; /* Adjust as needed */
+    border-collapse: collapse;
+    margin-left: 2px;
+}
+
+#student-info-table th, #student-info-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
 /* Style for the dates table */
 #dates-table {
-    width: calc(50% - 20px); /* Adjust as needed */
-    
+    width: calc(70vw - 20px); /* Adjust as needed */
+    border-collapse: collapse;
 }
+#dates-table th, #dates-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
 .student-info,.data-div{
     width:100%
 }
+

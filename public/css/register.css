@@ -1,9 +1,12 @@
+body {
+    margin: 0;
+}
 
 h1 {
     text-align: center;
 }
 form {
-    background-color: beige;
+    /* background-color: beige; */
     padding: 2em;
     height: 5.5em;
     margin: auto;
@@ -60,3 +63,4 @@ form button {
     text-decoration: none;
     cursor: pointer;
 }
+

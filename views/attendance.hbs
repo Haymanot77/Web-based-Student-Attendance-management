@@ -8,62 +8,42 @@
 <title>Attendance Form</title>
 
 </head>
-<body >
-    <a href="/" >Take Attendance</a>
-        <a href="/overall" onclick="">Overall</a>
-        <button onclick="openAdd()">Register Student</button>
-        <a href="/delete" onclick="">Delete Student</a>
-
-<form id="attendanceForm">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="3">Date: <span id="date"></span></th>
-                <th colspan="3">Attendance</th>
-            </tr>
-            <tr>
-                <th>Student ID</th>
-                <th>Name</th>
-                <th>Present</th>
-                <th>Absent</th>
-                <th>Excused</th>
-            </tr>
-        </thead>
-        <tbody id="studentDataBody">
-            <!-- Student data will be inserted here -->
-            
-        </tbody>
-    </table>
-
-    <button type="submit" id="submit">Submit</button>
-</form>
-    <!-- The Modal -->
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close" onclick="closeAdd()">&times;</span>
-            <h1>Student Register</h1>
-            <div>
-                <form>
-                    <label>
-                        <span>Student id:</span>
-                        <input id="studentId" type="text" />
-                    </label>
-                    <label>
-                        <span>Student name:</span>
-                        <input id="studentName" type="text" />
-                    </label>
-                    <label>
-                        <span> </span>
-                        <button id="addStudent">Add student</button>
-                    </label>
-                </form>
-                
-               
-            </div>
-        </div>
+<body>
     
+  <section id="header">
+            <ul id="navbar">
+                <li><a class="active" href="/" >Take Attendance</a></li>
+                <li><a href="/overall" onclick="">Overall</a></li>
+                <li><button onclick="openAdd()">Register Student</button></li>
+                <li><a href="/delete" onclick="">Delete Student</a></li>
+            </ul>
+    </section>
+        
+    <form id="attendanceForm">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="3">Date: <span id="date"></span></th>
+                    <th colspan="3">Attendance</th>
+                </tr>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Present</th>
+                    <th>Absent</th>
+                    <th>Excused</th>
+                </tr>
+            </thead>
+            <tbody id="studentDataBody">
+                <!-- Student data will be inserted here -->
+                
+            </tbody>
+        </table>
+
+        <button type="submit" id="submit">Submit</button>
+    </form>
+    
+   
  </body>
 <script src="js/attendance.js"></script>
 
