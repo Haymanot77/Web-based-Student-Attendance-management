@@ -6,6 +6,8 @@ body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+
+
 /*
     Navigation bar
 */
@@ -56,12 +58,13 @@ body {
 #navbar li a.active::after,
 #navbar li a:hover::after {
     content: "";
-    width: 50%;
+    width: 65%;
     height: 1.5px;
     background: #fff;
     position: absolute;
     bottom: -4px;
     left: 20px;
+    
 }
 
 /* body content */
@@ -105,24 +108,27 @@ body {
 #student-info-table th, #student-info-table td {
     border: 1px solid #333; /* Color 1 border for table */
     padding: 8px;
-    text-align: left;
+    text-align: center;
 }
 
 /* Style for the dates table */
 #dates-table {
     width: calc(68.5vw - 20px); /* Adjust as needed */
-    vertical-align: top;
-    margin-left: 0px; /* Adjust as needed */
+    
     border-collapse: collapse;
-    margin-right: 2px;
+    border: 1px #333;
+    padding: 20px;
+    overflow: scroll; /* Enable scrolling if needed */
+    
 }
 
 #dates-table th, #dates-table td {
     border: 1px solid #333; /* Color 1 border for table */
     border-left: 0;
     padding: 8px;
-    text-align: left;
-    width: 1000px; /* Set a specific width for each date column */
+    text-align: center;
+    width: 700px; /* Set a specific width for each date column */
+    
 }
 
 
@@ -143,6 +149,13 @@ h2 {
     cursor: pointer;
     font-size: medium;
     margin: 10px;
+    
+}
+.register-container{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 20px;
+    padding-bottom: 10px;
 }
 
 .register:hover {
@@ -160,13 +173,19 @@ th,
 td {
     border: 1px solid #333; /* Color 1 border for table cells */
     padding: 8px;
-    text-align: left;
+    text-align: center;
+    justify-content: center;
+    
 }
 
 .hd0 {
     background-color: #f2f2f2; /* Color 2 background for table headers */
     color: #332900; /* White text color for table headers */
 
+}
+
+.studentId {
+    width: 20vw;
 }
 
 th {
@@ -183,22 +202,26 @@ tr:hover {
 }
 
 .delete-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: center;
+   
+
     height: 100%;
     border-radius: 5px;
     font-size: 15px;
     cursor: pointer;
-    position: relative; /* Added relative positioning */
     overflow: hidden; /* Hide overflow to prevent shadow overflow */
+    background-color: #fff;
+}
+
+.delete-btn:hover {
+    background: none;
 }
 
 
 
 /* Modal container */
 .modal {
+    
+    margin:2px;
     display: none; /* Hidden by default */
     position: fixed; /* Fixed position */
     z-index: 1; /* Set the modal above everything else */
@@ -239,27 +262,4 @@ tr:hover {
 label {
     display: block;
     margin-bottom: 10px;
-}
-
-input[type='text'],
-.add {
-    width: 91.5%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc; /* Gray border */
-    border-radius: 5px;
-}
-
-.add {
-    background-color: #2d3c90; /* Color 1 background for buttons */
-    color: #fff; /* White text color */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 95%;
-
-}
-
-.add:hover {
-    background-color: #1f295d; /* Darker Color 1 background on hover */
 }

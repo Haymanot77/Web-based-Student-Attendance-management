@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/usiu.css"/>
-    <title>Document</title>
+    <title>Edit Attendance</title>
 </head>
 
 <body>
@@ -12,22 +12,23 @@
     <header id="header">
             <ul id="navbar">
                 <li><a href="/" >Take Attendance</a></li>
-                <li><a class="active" href="/overall" onclick="">Overall</a></li>
-                <li><a href="/delete" onclick="">Manage students</a></li>
+                <li><a class="active" href="/overall" >Overall</a></li>
+                <li><a href="/managestudents" >Manage Students</a></li>
             </ul>
     </header>
 
 <div class="content-container">
         <h2>Attendance: <span id="date"></span></h2>
-        <form id="attendanceForm">
+        <form  id="editAttendanceForm">
             <table>
                 <thead>
                     <tr>
                         <th>Student ID</th>
-                        <th>Name</th>
+                        <th>Student Name</th>
                         <th>Present</th>
                         <th>Absent</th>
                         <th>Excused</th>
+                        
                     </tr>
                 </thead>
                 <tbody id="studentDataBody">

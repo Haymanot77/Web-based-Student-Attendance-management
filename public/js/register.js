@@ -1,7 +1,3 @@
-
-
-//Registering a student
-
 var studentId;
 var studentName;
 
@@ -45,20 +41,7 @@ async function addStudent() {
         attendanceStatus: document.getElementById('attendanceStatus') ? document.getElementById('attendanceStatus').value : null // Get the attendance status if available
     };
 
-//   // Check if student with the same ID already exists
-//    const existingStudents = await fetchStudentData();
-//    const studentExists = existingStudents.some(existingStudent => existingStudent.id === studentId);
-//   if (studentExists) {
-//     const confirmed = confirm("A student with this ID already exists. try again?");
-//     if (!confirmed) {
-//         return; // Exit function if user cancels deletion
-//     }
-//     else{
-//     openAdd();
-//     return;
-//     }
-    
-//    }
+
 
 
     
@@ -102,15 +85,37 @@ document.querySelector('#addStudent').addEventListener('click', async (e) => {
     e.preventDefault();
     studentId = document.getElementById('studentId').value;
     studentName = document.getElementById('studentName').value;
+    // Check if both fields are filled
+if (!studentId || !studentName) {
+    alert("Please fill in both student ID and name.");
+    document.getElementById('studentId').value = '';
+    document.getElementById('studentName').value = '';
+    return;
+}
     if (studentId && studentName) {
         studentId = parseInt(studentId);
+
+
+// Check if student ID is a number
+if (isNaN(studentId)) {
+    alert("Please enter a valid student ID (must be a number).");
+    document.getElementById('studentId').value = '';
+    document.getElementById('studentName').value = '';
+    return;
+}
+
+
+
 // Check if student with the same ID already exists
    const existingStudents = await fetchStudentData();
    const studentExists = existingStudents.some(existingStudent => existingStudent.id === studentId);
   if (studentExists) {
     const confirmed = confirm("A student with this ID already exists. try again?");
     if (!confirmed) {
-        return; // Exit function if user cancels deletion
+        closeAdd();// Exit function if user cancels deletion
+        document.getElementById('studentId').value = '';
+        document.getElementById('studentName').value = '';
+        return; 
     }
     else{
     openAdd();
@@ -120,10 +125,10 @@ document.querySelector('#addStudent').addEventListener('click', async (e) => {
     }
     
    }
-        //if(typeof studentId==='Number'){
+        
         await addStudent();
-        //  await fetchStudents();
-        // }
+        await  populateStudentTable();
+        
     }
    
 });

@@ -75,6 +75,16 @@ function createStudentRow(student, attendanceData, date) {
             excusedCell.textContent = '⚠️';
             excusedCell.classList.add('status', 'excused');
             break;
+        case 'late':
+        
+            presentCell.textContent= 'late registration';
+            absentCell.textContent = '';
+            excusedCell.textContent= ''; // Set status to absent if it was late
+            presentCell.disabled = true; // Disable the cell
+            absentCell.disabled=true;
+            excusedCell.disabled=true;
+            presentCell.classList.add('status', 'late');
+            break;
         default:
             presentCell.textContent = '-';
             absentCell.textContent = '-';
@@ -82,10 +92,11 @@ function createStudentRow(student, attendanceData, date) {
     }
 
     // Add click event listeners to status cells for editing
+    if (status !== 'late'){
     presentCell.addEventListener('click', () => handleStatusChange(presentCell, 'present'));
     absentCell.addEventListener('click', () => handleStatusChange(absentCell, 'absent'));
     excusedCell.addEventListener('click', () => handleStatusChange(excusedCell, 'excused'));
-
+    }
     row.appendChild(idCell);
     row.appendChild(nameCell);
     //row.appendChild(scoreCell);
@@ -123,6 +134,8 @@ function getStatusSymbol(status) {
             return '❌';
         case 'excused':
             return '⚠️';
+        case 'late':
+            return 'lateregistration'
         default:
             return '-';
     }
@@ -190,10 +203,10 @@ async function submitAttendance(event, date) {
             status = 'absent';
         } else if (excusedCell && excusedCell.textContent === '⚠️') {
             status = 'excused';
-        } else {
-            status = 'unknown';
+        } 
+        else {
+            status = 'late';
         }
-
         // Add status to attendance data
         attendanceData[studentId] = { status };
     });
@@ -232,6 +245,7 @@ document.getElementById('submit').addEventListener('click', function(event) {
     if (date) {
         // Submit the attendance data for the current date
         submitAttendance(event, date);
+        window.location.href='/overall';
     } else {
         console.error('Date parameter is missing in the URL.');
     }
@@ -259,53 +273,4 @@ document.getElementById('submit').addEventListener('click', function(event) {
 
 
 
-
-//REgistering a student
-var studentId;
-var studentName;
-
-
-
-async function addStudent() {
-    const url = server + '/students';
-    const student = {id: studentId, name: studentName};
-    const options = {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(student)
-    }
-    const response = await fetch(url, options);
-    alert("Student added successfully!");
-    closeAdd(); 
-}
-
-document.querySelector('form').addEventListener('submit',async (e) => {
-    studentId = document.getElementById('studentId').value;
-    studentName = document.getElementById('studentName').value;
-    if (studentId && studentName) {
-        studentId = parseInt(studentId);
-        //if(typeof studentId==='Number'){
-            await addStudent();
-          //  await fetchStudents();
-           
-       // }
-      
-           
-       
-    }
-    e.preventDefault();
-});
-
-
-function openAdd() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "block";
-}
-
-function closeAdd() {
-    var modal = document.getElementById("myModal");
-    modal.style.display = "none";
-}
 

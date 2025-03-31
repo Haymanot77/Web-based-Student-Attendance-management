@@ -1,0 +1,39 @@
+.input,
+#addStudent {
+    width: 91.5%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border:none;
+    outline: none;
+    border-bottom: 1px solid rgb(30, 24, 24); /* Gray border */
+    border-radius: 1px;
+    align-items: center;
+}
+
+#addStudent {
+    background-color: #2d3c90; /* Color 1 background for buttons */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 95%;
+
+}
+
+#addStudent:hover {
+    background-color: #1f295d; /* Darker Color 1 background on hover */
+}
+
+.status {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 5px;
+    color: #333; /* White text color */
+    border-radius: 5px;
+    cursor: pointer;
+    width: 95%;
+}
+.modal-content h1{
+    text-align: center;
+}

@@ -30,8 +30,7 @@ app.get('/attendance', (request, response) => {
 
 // This is a RESTful POST web service
 app.post('/students', jsonParser, (request, response) => {
-  datalengh=data.length
-  console.log(datalengh)
+  
   if(typeof request.body["id"]!='number') {
       // Handle invalid data
       response.status(400).send("Invalid data format: ID must be a number.");
@@ -91,7 +90,7 @@ function writeAttendanceData(attendanceData) {
         if (err) {
             console.error('Error writing attendance data:', err);
         } else {
-            console.log('Attendance data written successfully.');
+            
         }
     });
 }
@@ -216,9 +215,7 @@ app.put('/students/:id', async (req, res) => {
 app.get('/', (request, response) => {
   response.render('attendance');
 });
-  app.get('/delete', (req, res) => {
-    res.render('delete'); 
-  });
+
   app.get('/managestudents', (req, res) => {
     res.render('managestudents'); 
   });
